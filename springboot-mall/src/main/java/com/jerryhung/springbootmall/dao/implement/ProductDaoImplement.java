@@ -33,6 +33,7 @@ public class ProductDaoImplement implements ProductDao {
 
         Map<String, Object> map = new HashMap<>();
 
+        // Searching condition
         if (productQueryParam.getCategory() != null) {
             sql += " AND category = :category";
             map.put("category", productQueryParam.getCategory().name());
@@ -43,7 +44,13 @@ public class ProductDaoImplement implements ProductDao {
             map.put("search", "%" + productQueryParam.getSearch() + "%");
         }
 
+        // Sorting
         sql += " ORDER BY " + productQueryParam.getOrderBy() + " " + productQueryParam.getSort();
+
+        // Pagination
+        sql += " LIMIT :limit OFFSET :offset";
+        map.put("limit", productQueryParam.getLimit());
+        map.put("offset", productQueryParam.getOffset());
 
         List<Product> productList = namedParameterJdbcTemplate.query(sql, map, new ProductRowMapper());
 
