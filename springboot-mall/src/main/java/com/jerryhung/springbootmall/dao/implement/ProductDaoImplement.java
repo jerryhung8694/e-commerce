@@ -1,6 +1,5 @@
 package com.jerryhung.springbootmall.dao.implement;
 
-import com.jerryhung.springbootmall.constant.ProductCategory;
 import com.jerryhung.springbootmall.dao.ProductDao;
 import com.jerryhung.springbootmall.dto.ProductQueryParam;
 import com.jerryhung.springbootmall.dto.ProductRequest;
